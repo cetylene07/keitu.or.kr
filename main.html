@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국산업기술기획평가원 노동조합</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a0aec0; /* Tailwind gray-500 */
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096; /* Tailwind gray-600 */
+        }
+        /* Basic transition for content fade-in */
+        #main-content > div {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-item-active {
+            color: #2563eb; /* Tailwind blue-600 */
+            font-weight: 700; /* Bolder for active item */
+        }
+        .mobile-nav-item-active {
+            background-color: #eff6ff; /* Tailwind blue-50 */
+            color: #2563eb; /* Tailwind blue-600 */
+            font-weight: 600;
+        }
+        .hero-bg {
+            background-image: url('https://fakeimg.pl/1920x600/374151/EBF4FF/?text=%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20R%26D%EC%99%80%20%EB%85%B8%EB%8F%99%EC%A1%B4%EC%A4%91&font=noto');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Additional styling for form validation */
+        .form-input-error {
+            border-color: #ef4444; /* Tailwind red-500 */
+            box-shadow: 0 0 0 1px #ef4444;
+        }
+        .form-message {
+            margin-top: 0.5rem;
+            font-size: 0.875rem; /* text-sm */
+            padding: 0.75rem; /* Increased padding */
+            border-radius: 0.375rem; /* rounded-md */
+            border-width: 1px;
+        }
+        .form-message-success {
+            color: #155724; /* Darker green for text */
+            background-color: #d4edda; /* Lighter green background */
+            border-color: #c3e6cb; /* Green border */
+        }
+        .form-message-error {
+            color: #721c24; /* Darker red for text */
+            background-color: #f8d7da; /* Lighter red background */
+            border-color: #f5c6cb; /* Red border */
+        }
+        /* Ensure desktop nav items are on one line */
+        #desktop-nav .nav-item, #desktop-nav .relative.group > button {
+            white-space: nowrap;
+            font-size: 0.8rem; 
+            padding-left: 0.5rem; 
+            padding-right: 0.5rem;
+            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+         @media (min-width: 1280px) { /* xl screens */
+            #desktop-nav .nav-item, #desktop-nav .relative.group > button {
+                font-size: 0.875rem; 
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Tailwind shadow-lg */
+        }
+        .text-shadow {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .text-shadow-md {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        /* Calendar styles */
+        .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background-color: #e5e7eb; border: 1px solid #d1d5db; }
+        .calendar-header { text-align: center; padding: 0.5rem; background-color: #f3f4f6; font-weight: bold; font-size: 0.875rem; }
+        .calendar-day { padding: 0.75rem; background-color: white; text-align: center; font-size: 0.875rem; min-height: 80px; position: relative; }
+        .calendar-day.other-month { background-color: #f9fafb; color: #9ca3af; }
+        .calendar-day .event { font-size: 0.75rem; background-color: #dbeafe; color: #1e40af; padding: 0.125rem 0.25rem; border-radius: 0.25rem; margin-top: 0.25rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+    <div id="app" class="flex flex-col min-h-screen">
+
+        <header class="bg-white shadow-lg sticky top-0 z-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <div class="flex items-center space-x-3">
+                        <a href="#/" class="flex items-center space-x-2 group">
+                            <svg class="h-10 w-10 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                            </svg>
+                            <span class="text-xl md:text-2xl font-bold text-slate-800 whitespace-nowrap group-hover:text-blue-700 transition-colors duration-300">
+                                한국산업기술기획평가원 노동조합
+                            </span>
+                        </a>
+                    </div>
+                    <nav id="desktop-nav" class="hidden lg:flex items-center space-x-0 xl:space-x-1">
+                        </nav>
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button" class="p-2 rounded-md text-slate-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                            <svg class="h-6 w-6" id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <svg class="h-6 w-6 hidden" id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="mobile-nav-pane" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden transition-opacity duration-300 ease-in-out">
+            <div id="mobile-nav" class="fixed top-0 right-0 h-full w-72 bg-white shadow-xl transform transition-transform duration-300 ease-in-out translate-x-full p-4 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-lg font-semibold text-slate-700">전체 메뉴</h2>
+                    <button id="mobile-close-button" class="p-2 rounded-md text-slate-600 hover:bg-slate-100">
+                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                </div>
+        </div>
+
+        <main id="main-content" class="flex-grow">
+            </main>
+
+        <footer class="bg-slate-900 text-slate-300 py-12">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold text-lg text-white mb-3">한국산업기술기획평가원 노동조합</h4>
+                        <p class="text-sm flex items-start mb-2">
+                            <svg class="w-4 h-4 mr-2 mt-1 text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001zm.612-1.426a.75.75 0 01-.096-.127l-.006-.009C10.168 17.282 10 17.216 10 17.216s-.168.066-.249.141l-.006.009a.75.75 0 01-.096.127c-.141.175-.34.288-.57.329V18a2.5 2.5 0 00-5 0v.761a.75.75 0 01-.571-.329C3.28 18.26 3 17.836 3 17.163V7.75A4.75 4.75 0 017.75 3h4.5A4.75 4.75 0 0117 7.75v9.413c0 .673-.28 1.097-.429 1.273a.75.75 0 01-.571.329V18a2.5 2.5 0 00-5 0v-.761a.75.75 0 01-.57-.329zM10 6a1 1 0 011 1v1a1 1 0 11-2 0V7a1 1 0 011-1zM9 10a1 1 0 00-1 1v.01a1 1 0 001 1h2a1 1 0 001-1V11a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                            <span>대구광역시 동구 첨단로8길 32 한국산업기술기획평가원 노동조합</span>
+                        </p>
+                        <p class="text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.001c.06.25.034.518-.073.75l-.232.484a.875.875 0 00.232.984l3.034 3.033a.875.875 0 00.984.232l.483-.232c.234-.107.499-.133.75-.072l3.001.715A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" /></svg>
+                            <span>대표전화: 053-718-0000</span>
+                        </p>
+                         <p class="text-sm flex items-center mt-2">
+                            <svg class="w-4 h-4 mr-2 text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" /><path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" /></svg>
+                            <span id="footer-email">이메일: union@keitu.or.kr</span>
+                        </p>
+                    </div>
+                    <div class="md:col-span-1 lg:col-span-2">
+                        <h4 class="font-bold text-lg text-white mb-3">바로가기</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="https://www.keit.re.kr" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 transition-colors">한국산업기술기획평가원</a></li>
+                            <li><a href="https://www.moel.go.kr" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 transition-colors">고용노동부</a></li>
+                            <li><a href="https://www.law.go.kr" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 transition-colors">국가법령정보센터</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-slate-700 text-center text-sm text-slate-400">
+                    <p>Copyright © <span id="current-year"></span> KEIT Labor Union. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module">
+        // =====================================================================================
+        // ! 한국산업기술기획평가원 노동조합 웹사이트 SPA (Single Page Application) 스크립트
+        // 제작 목적: 노동조합 활동 안내, 조합원 소통 및 정보 공유
+        // 제 작 자: AI Assistant (Gemini)
+        // 최종수정일: 2025-05-25 (주석 추가 및 한국어/영문 경로 처리 개선, 404 오류 수정)
+        // =====================================================================================
+
+        // --- CSV 데이터 (실제로는 서버에서 가져오거나 별도 파일로 관리) ---
+        // ! 주의: 이 CSV 데이터는 웹사이트 메뉴 구조의 기반이 됩니다.
+        const csvData = `
+,홈페이지명,한국산업기술기획평가원 노동조합,,,,,,
+,도메인(안),www.keitu.or.kr,,,,,
+,,,,,,,,
+대메뉴,소개,공지/활동소식,노동조합 가입/변경,노조 커뮤니티,조합원 혜택,관리자(임원) 메뉴 (ERP일부기능),로그인,홈페이지 회원 가입
+소메뉴,노동조합소개,공지사항(게시판),노동조합 가입 신청,노조임원 활동 게시판,조합원 이벤트 안내,"(임원용) 출장비/회의비 신청서 (증빙 등록, 신청서 제출 등), 내역 및 증빙 일괄 내려받기 기능 포함, 출장신청(결재), 비용집행(증빙)을 위한 내부결재 기능",아이디 찾기,본인인증
+소메뉴,위원장 인사말,주요활동(행사)(게시판),개인정보 변경,상집위/대의원회 활동 게시판,조합원 혜택 안내,"(상집위/대의원용) 출장비/회의비 신청서 (증빙 등록, 신청서 제출 등), 내역 및 증빙 일괄 내려받기 기능 포함, 비용집행(증빙) 내부결재 기능",비밀번호 찾기,아이디/비밀번호/생년월일
+소메뉴,조직도,갤러리(행사사진게시판),조합원 탈퇴(승인 필요),단협위반신고(게시판),,"회원 관리/통계 (나이,직급,소속(경영/사업),근무지,회원구분), 엑셀내려받기",비밀번호 재설정,주소/휴대폰/이메일주소
+소메뉴,오시는길,관련기관(로고+링크),,고충상담실(익명게시판),,"(임원용) 타임오프 입력 및 출력 관리(4,100시간, 1인당 1,366시간), 엑셀내려받기",,입사연월일
+소메뉴,,,,조합 투표실,,(선택) SMS 발송,,사번
+소메뉴,,,,자료실(서식/양식/규약/단체협약 게시판),,캘린더(일정 공유용),,
+        `;
+        
+        // --- 메뉴명 한글-영문 매핑 ---
+        // ! 중요: 이 매핑은 내부 경로 생성 및 페이지 객체 키 참조에 사용됩니다.
+        // 사용자가 보는 메뉴명은 한글로 유지하되, 내부 라우팅은 영문으로 처리하여 404 오류를 방지합니다.
+        const menuKoreanToEnglish = {
+            "소개": "introduction",
+            "노동조합소개": "about-union",
+            "위원장 인사말": "chairmans-message",
+            "조직도": "organization-chart",
+            "오시는길": "location",
+            "공지/활동소식": "news-activities",
+            "공지사항(게시판)": "announcements",
+            "주요활동(행사)(게시판)": "main-activities",
+            "갤러리(행사사진게시판)": "gallery",
+            "관련기관(로고+링크)": "related-links",
+            "노동조합 가입/변경": "membership",
+            "노동조합 가입 신청": "join-union",
+            "개인정보 변경": "update-info",
+            "조합원 탈퇴(승인 필요)": "withdraw-membership",
+            "노조 커뮤니티": "community",
+            "노조임원 활동 게시판": "executive-board",
+            "상집위/대의원회 활동 게시판": "committee-board",
+            "단협위반신고(게시판)": "violation-report",
+            "고충상담실(익명게시판)": "counseling-anonymous",
+            "조합 투표실": "voting-room",
+            "자료실(서식/양식/규약/단체협약 게시판)": "resources",
+            "조합원 혜택": "member-benefits",
+            "조합원 이벤트 안내": "event-guide",
+            "조합원 혜택 안내": "benefits-guide",
+            "관리자(임원) 메뉴 (ERP일부기능)": "admin-menu", 
+            "관리자메뉴": "admin-menu", 
+            "임원용 경비신청": "expense-report-exec", 
+            "상집위/대의원용 경비신청": "expense-report-committee",
+            "회원 관리/통계": "member-management",
+            "타임오프 관리": "timeoff-management",
+            "SMS 발송": "sms-dispatch",
+            "일정 공유 캘린더": "shared-calendar",
+            "로그인": "login",
+            "아이디 찾기": "find-id",
+            "비밀번호 찾기": "find-password",
+            "비밀번호 재설정": "reset-password",
+            "홈페이지 회원 가입": "signup", 
+            "회원가입": "signup", 
+            "본인인증": "verification", 
+            "아이디/비밀번호/생년월일": "account-info",
+            "주소/휴대폰/이메일주소": "contact-info",
+            "입사연월일": "join-date", 
+            "사번": "employee-id" 
+        };
+
+        /**
+         * 한글 메뉴명을 미리 정의된 영문명으로 변환합니다.
+         * @param {string} koreanTitle - 변환할 한글 메뉴명
+         * @returns {string} 영문 메뉴명 (매핑 없을 시, 원본을 슬러그화하여 반환)
+         */
+        function getInternalName(koreanTitle) {
+            const trimmedTitle = koreanTitle.trim();
+            return menuKoreanToEnglish[trimmedTitle] || slugify(trimmedTitle); 
+        }
+        
+        /**
+         * 텍스트를 URL 친화적인 슬러그(slug) 형태로 변환합니다. (영문 및 하이픈 기준)
+         * @param {string} text - 변환할 텍스트
+         * @returns {string} 슬러그 형태로 변환된 텍스트
+         */
+        function slugify(text) {
+            if (!text) return '';
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')          
+                .replace(/[^a-z0-9-]/g, '')   // 영문자, 숫자, 하이픈 외 문자 제거
+                .replace(/--+/g, '-')         
+                .replace(/^-+/, '')           
+                .replace(/-+$/, '');          
+        }
+
+        /**
+         * CSV 데이터를 파싱하여 메뉴 구조를 생성합니다.
+         * @param {string} csv - 파싱할 CSV 문자열 데이터
+         * @returns {object} 메뉴 아이템 배열을 포함하는 객체
+         */
+        function parseMenuCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const menuStructure = [];
+            let headerRowIndex = -1;
+            
+            lines.forEach((line, index) => {
+                const parts = line.split(',');
+                if (parts.length > 0 && parts[0].trim() === '대메뉴') {
+                    headerRowIndex = index;
+                }
+            });
+            
+            const footerEmailEl = document.getElementById('footer-email');
+            if (footerEmailEl) {
+                 footerEmailEl.textContent = `이메일: union@keitu.or.kr`;
+            }
+
+            if (headerRowIndex === -1) {
+                console.error("CSV에서 '대메뉴' 행을 찾을 수 없습니다.");
+                return { menuItems: [] };
+            }
+
+            const mainMenusRaw = lines[headerRowIndex].split(',').slice(1).map(m => m.trim());
+            const subMenuLines = lines.slice(headerRowIndex + 1); 
+            
+            mainMenusRaw.forEach((originalMainMenuTitle, colIndex) => {
+                if (!originalMainMenuTitle) return;
+
+                let displayText = originalMainMenuTitle; 
+                let internalName = getInternalName(originalMainMenuTitle); 
+
+                // *** 특정 대메뉴명 단축 및 내부 이름 통일 ***
+                if (originalMainMenuTitle === "관리자(임원) 메뉴 (ERP일부기능)") {
+                    displayText = "관리자메뉴";
+                    internalName = getInternalName(displayText); 
+                }
+                if (originalMainMenuTitle === "홈페이지 회원 가입") {
+                    displayText = "회원가입";
+                    internalName = getInternalName(displayText); 
+                }
+                
+                const mainMenuItem = {
+                    id: slugify(internalName), 
+                    title: internalName, 
+                    displayText: displayText, 
+                    path: (displayText === "회원가입") ? `#/${internalName}/verification` : `#/${slugify(internalName)}`, // 회원가입은 첫 단계로 바로 연결
+                    submenus: []
+                };
+
+                subMenuLines.forEach(subLine => { 
+                    const subLineParts = subLine.split(',');
+                     if (subLineParts.length > colIndex + 1) {
+                        const subMenuTitleKoreanRaw = subLineParts[colIndex + 1];
+                        if (subMenuTitleKoreanRaw) {
+                            const subMenuTitleKorean = subMenuTitleKoreanRaw.trim();
+                            if (subMenuTitleKorean && subMenuTitleKorean.toLowerCase() !== '소메뉴' && subMenuTitleKorean.length < 100) {
+                                const subMenuInternalName = getInternalName(subMenuTitleKorean);
+                                mainMenuItem.submenus.push({
+                                    id: `${slugify(internalName)}-${slugify(subMenuInternalName)}`,
+                                    title: subMenuInternalName, 
+                                    displayText: subMenuTitleKorean, 
+                                    path: `#/${slugify(internalName)}/${slugify(subMenuInternalName)}`
+                                });
+                            } else if (originalMainMenuTitle === '관리자(임원) 메뉴 (ERP일부기능)' && subMenuTitleKorean.length >=100){
+                                let adminSubMenuDisplayText = subMenuTitleKorean; 
+                                let adminSubMenuInternalName = subMenuTitleKorean; 
+
+                                if (subMenuTitleKorean.includes('(임원용) 출장비/회의비 신청서')) {
+                                    adminSubMenuDisplayText = "임원용 경비신청";
+                                } else if (subMenuTitleKorean.includes('(상집위/대의원용) 출장비/회의비 신청서')) {
+                                    adminSubMenuDisplayText = "상집위/대의원용 경비신청";
+                                } else if (subMenuTitleKorean.includes('회원 관리/통계')) {
+                                     adminSubMenuDisplayText = "회원 관리/통계";
+                                } else if (subMenuTitleKorean.includes('타임오프 입력')) {
+                                     adminSubMenuDisplayText = "타임오프 관리";
+                                } else if (subMenuTitleKorean.includes('(선택) SMS 발송')) {
+                                     adminSubMenuDisplayText = "SMS 발송";
+                                } else if (subMenuTitleKorean.includes('캘린더(일정 공유용)')) {
+                                     adminSubMenuDisplayText = "일정 공유 캘린더";
+                                }
+                                adminSubMenuInternalName = getInternalName(adminSubMenuDisplayText); 
+                                
+                                mainMenuItem.submenus.push({ 
+                                    id: `${slugify(internalName)}-${slugify(adminSubMenuInternalName)}`, 
+                                    title: adminSubMenuInternalName, 
+                                    displayText: adminSubMenuDisplayText,
+                                    path: `#/${slugify(internalName)}/${slugify(adminSubMenuInternalName)}`
+                                });
+                            }
+                        }
+                    }
+                });
+                if (mainMenuItem.displayText === '관리자메뉴' && mainMenuItem.submenus.length === 0) {
+                     mainMenuItem.submenus = [ 
+                        { id:slugify(internalName)+"-expense-report-exec", title: "expense-report-exec", displayText: "임원용 경비신청", path: `#/${slugify(internalName)}/expense-report-exec`},
+                        { id:slugify(internalName)+"-expense-report-committee", title: "expense-report-committee", displayText: "상집위/대의원용 경비신청", path: `#/${slugify(internalName)}/expense-report-committee`},
+                        { id:slugify(internalName)+"-member-management", title: "member-management", displayText: "회원 관리/통계", path: `#/${slugify(internalName)}/member-management`},
+                        { id:slugify(internalName)+"-timeoff-management", title: "timeoff-management", displayText: "타임오프 관리", path: `#/${slugify(internalName)}/timeoff-management`},
+                        { id:slugify(internalName)+"-sms-dispatch", title: "sms-dispatch", displayText: "SMS 발송", path: `#/${slugify(internalName)}/sms-dispatch`},
+                        { id:slugify(internalName)+"-shared-calendar", title: "shared-calendar", displayText: "일정 공유 캘린더", path: `#/${slugify(internalName)}/shared-calendar`}
+                     ];
+                }
+
+                if (['로그인'].includes(displayText)) { // 회원가입은 하위메뉴가 있을 수 있으므로 제외
+                     mainMenuItem.submenus = [];
+                }
+                // 회원가입 대메뉴는 하위 메뉴를 가지도록 수정 (본인인증, 계정정보, 추가정보)
+                if (displayText === '회원가입') {
+                    mainMenuItem.submenus = [
+                        { id: `${slugify(internalName)}-verification`, title: 'verification', displayText: '본인인증', path: `#/${slugify(internalName)}/verification` },
+                        { id: `${slugify(internalName)}-account-info`, title: 'account-info', displayText: '계정 정보', path: `#/${slugify(internalName)}/account-info` },
+                        { id: `${slugify(internalName)}-contact-info`, title: 'contact-info', displayText: '추가 정보', path: `#/${slugify(internalName)}/contact-info` }
+                    ];
+                }
+
+                menuStructure.push(mainMenuItem);
+            });
+            return { menuItems: menuStructure }; 
+        }
+
+        // --- DOM 요소 참조 ---
+        const { menuItems } = parseMenuCSV(csvData);
+        const desktopNav = document.getElementById('desktop-nav');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mainContent = document.getElementById('main-content');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNavPane = document.getElementById('mobile-nav-pane');
+        const mobileCloseButton = document.getElementById('mobile-close-button');
+        const menuOpenIcon = document.getElementById('menu-open-icon');
+        const menuCloseIcon = document.getElementById('menu-close-icon');
+        
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        /**
+         * 데스크톱 및 모바일 네비게이션 메뉴를 동적으로 생성합니다.
+         */
+        function createMenus() {
+            desktopNav.innerHTML = ''; 
+            menuItems.forEach(item => {
+                if (item.submenus && item.submenus.length > 0 && item.displayText !== '로그인') { // 로그인 메뉴는 드롭다운 없음
+                    const div = document.createElement('div');
+                    div.className = 'relative group';
+                    div.innerHTML = `
+                        <button class="px-2 xl:px-3 py-2 rounded-md text-xs xl:text-sm font-medium text-slate-600 hover:text-blue-700 hover:bg-slate-50 transition-colors focus:outline-none flex items-center nav-item whitespace-nowrap" data-path="${item.path}">
+                            ${item.displayText} <svg class="ml-1 h-4 w-4 text-slate-400 group-hover:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 group-hover:opacity-100 focus:outline-none transition-opacity duration-150 ease-in-out pointer-events-none group-hover:pointer-events-auto z-20">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                ${item.submenus.map(sub => `
+                                    <a href="${sub.path}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-blue-700 nav-item" role="menuitem" data-path="${sub.path}">${sub.displayText}</a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                    desktopNav.appendChild(div);
+                } else { // 하위 메뉴가 없거나 로그인 메뉴인 경우
+                    const a = document.createElement('a');
+                    a.href = item.path; // "회원가입"의 경우 #/signup/verification 으로 설정됨
+                    a.className = 'px-2 xl:px-3 py-2 rounded-md text-xs xl:text-sm font-medium text-slate-600 hover:text-blue-700 hover:bg-slate-50 transition-colors nav-item whitespace-nowrap';
+                    a.dataset.path = item.path;
+                    a.textContent = item.displayText; 
+                    desktopNav.appendChild(a);
+                }
+            });
+
+            const mobileNavContainer = mobileNav.querySelector('.flex-col') || document.createElement('nav');
+            if (!mobileNav.querySelector('.flex-col')) {
+                mobileNavContainer.className = 'flex flex-col space-y-1 mt-4';
+                mobileNav.appendChild(mobileNavContainer);
+            } else {
+                 mobileNavContainer.innerHTML = '';
+            }
+
+            menuItems.forEach(item => {
+                const menuItemDiv = document.createElement('div');
+                if (item.submenus && item.submenus.length > 0 && item.displayText !== '로그인') {
+                    menuItemDiv.innerHTML = `
+                        <button class="w-full flex items-center justify-between px-3 py-3 text-left text-slate-700 hover:bg-slate-100 rounded-md mobile-nav-item-main" data-path="${item.path}">
+                            <span class="font-medium">${item.displayText}</span>
+                            <svg class="ml-2 h-5 w-5 text-slate-400 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="pl-4 mt-1 space-y-1 hidden">
+                            ${item.submenus.map(sub => `
+                                <a href="${sub.path}" class="block px-3 py-2 text-slate-600 hover:bg-blue-50 hover:text-blue-700 rounded-md mobile-nav-item" data-path="${sub.path}">${sub.displayText}</a>
+                            `).join('')}
+                        </div>
+                    `;
+                    menuItemDiv.querySelector('button').addEventListener('click', (e) => {
+                        const subMenu = e.currentTarget.nextElementSibling;
+                        const icon = e.currentTarget.querySelector('svg');
+                        subMenu.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-90');
+                    });
+                } else {
+                    menuItemDiv.innerHTML = `
+                        <a href="${item.path}" class="block px-3 py-3 font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 rounded-md mobile-nav-item-main mobile-nav-item" data-path="${item.path}">${item.displayText}</a>
+                    `;
+                }
+                mobileNavContainer.appendChild(menuItemDiv);
+            });
+        }
+        
+        /**
+         * 관리자 메뉴용 플레이스홀더 페이지 내용을 생성합니다.
+         * @param {string} title - 페이지 제목 (한글)
+         * @param {string} description - 페이지 설명 (한글)
+         * @returns {string} HTML 문자열
+         */
+        function createAdminPagePlaceholder(title, description) {
+            // SMS 발송 페이지 특별 처리
+            if (title.includes("SMS")) {
+                return `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">${title}</h1>
+                    <form id="sms-dispatch-form" class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6">
+                        <div>
+                            <label for="smsRecipients" class="block text-sm font-medium text-slate-700 mb-1">수신 대상</label>
+                            <select id="smsRecipients" name="smsRecipients" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="all">전체 조합원</option>
+                                <option value="executives">임원진</option>
+                                <option value="delegates">대의원</option>
+                                </select>
+                        </div>
+                        <div>
+                            <label for="smsMessage" class="block text-sm font-medium text-slate-700 mb-1">메시지 내용 <span class="text-red-500">*</span></label>
+                            <textarea id="smsMessage" name="smsMessage" rows="5" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="발송할 메시지를 입력하세요..."></textarea>
+                            <p class="text-xs text-slate-500 mt-1 text-right">0 / 80 바이트 (한글 40자)</p>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-md transition-colors duration-300">SMS 발송 (시뮬레이션)</button>
+                        <p id="sms-dispatch-message" class="text-center text-sm"></p>
+                    </form>
+                </div>`;
+            }
+            // 공유 캘린더 페이지 특별 처리
+            if (title.includes("일정 공유 캘린더")) {
+                 return `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">${title}</h1>
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
+                        <div class="flex justify-between items-center mb-6">
+                            <button class="p-2 rounded-md hover:bg-slate-100">&lt; 이전 달</button>
+                            <h2 class="text-xl font-semibold">2025년 5월 (예시)</h2>
+                            <button class="p-2 rounded-md hover:bg-slate-100">다음 달 &gt;</button>
+                        </div>
+                        <div class="calendar">
+                            ${['일', '월', '화', '수', '목', '금', '토'].map(day => `<div class="calendar-header">${day}</div>`).join('')}
+                            ${Array(35).fill(null).map((_, i) => {
+                                const dayNum = i - 3 + 1; // 예시 달력 시작일 조정
+                                const isCurrentMonth = dayNum > 0 && dayNum <= 31;
+                                let eventsHtml = '';
+                                if (isCurrentMonth && dayNum === 10) eventsHtml += '<div class="event bg-blue-100 text-blue-700">대의원 회의</div>';
+                                if (isCurrentMonth && dayNum === 22) eventsHtml += '<div class="event bg-green-100 text-green-700">노동절 기념행사</div>';
+                                return `<div class="calendar-day ${isCurrentMonth ? '' : 'other-month'}">${isCurrentMonth ? dayNum : ''}${eventsHtml}</div>`;
+                            }).join('')}
+                        </div>
+                        <p class="text-sm text-slate-500 mt-4 text-center">실제 캘린더 기능은 추가 개발이 필요합니다.</p>
+                    </div>
+                </div>`;
+            }
+            // (임원용) 경비 신청 페이지 특별 처리
+            if (title.includes("임원용 경비신청")) {
+                 return `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">${title}</h1>
+                    <form id="expense-report-form" class="bg-white p-8 rounded-xl shadow-xl max-w-2xl mx-auto space-y-6">
+                        <p class="text-sm text-slate-600 bg-blue-50 p-4 rounded-md border border-blue-200">임원 활동 관련 경비를 신청합니다. 6하 원칙에 따라 상세히 작성해주십시오.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="expenseDate" class="block text-sm font-medium text-slate-700 mb-1">지출 일시 <span class="text-red-500">*</span></label>
+                                <input type="datetime-local" name="expenseDate" id="expenseDate" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="expenseAmount" class="block text-sm font-medium text-slate-700 mb-1">지출 금액 (원) <span class="text-red-500">*</span></label>
+                                <input type="number" name="expenseAmount" id="expenseAmount" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="예: 30000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="expenseLocation" class="block text-sm font-medium text-slate-700 mb-1">사용처 (어디서) <span class="text-red-500">*</span></label>
+                            <input type="text" name="expenseLocation" id="expenseLocation" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="예: OO식당 (서울 강남점)">
+                        </div>
+
+                        <div>
+                            <label for="expensePurpose" class="block text-sm font-medium text-slate-700 mb-1">지출 목적 및 내용 (무엇을, 왜, 어떻게) <span class="text-red-500">*</span></label>
+                            <textarea name="expensePurpose" id="expensePurpose" rows="4" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="예: 전국 노동조합 대표자 회의 관련 식사 (OOO위원장, XXX사무국장과 함께)"></textarea>
+                        </div>
+                         <div>
+                            <label for="expenseAttendees" class="block text-sm font-medium text-slate-700 mb-1">참석자 (누구와, 필요한 경우)</label>
+                            <input type="text" name="expenseAttendees" id="expenseAttendees" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="예: OOO위원장, XXX사무국장 (총 3명)">
+                        </div>
+
+                        <div>
+                            <label for="expenseReceipt" class="block text-sm font-medium text-slate-700 mb-1">영수증 첨부 <span class="text-red-500">*</span></label>
+                            <input type="file" name="expenseReceipt" id="expenseReceipt" required class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        
+                        <div class="border-t pt-6 mt-6 space-y-4">
+                            <h3 class="text-lg font-medium text-slate-800">지급 요청 계좌 정보</h3>
+                            <div>
+                                <label for="bankName" class="block text-sm font-medium text-slate-700 mb-1">은행명 <span class="text-red-500">*</span></label>
+                                <input type="text" name="bankName" id="bankName" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="예: 국민은행">
+                            </div>
+                            <div>
+                                <label for="accountNumber" class="block text-sm font-medium text-slate-700 mb-1">계좌번호 <span class="text-red-500">*</span></label>
+                                <input type="text" name="accountNumber" id="accountNumber" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="'-' 없이 숫자만 입력">
+                            </div>
+                            <div>
+                                <label for="accountHolder" class="block text-sm font-medium text-slate-700 mb-1">예금주 (실명) <span class="text-red-500">*</span></label>
+                                <input type="text" name="accountHolder" id="accountHolder" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="예: 홍길동">
+                            </div>
+                             <p class="text-xs text-slate-500">※ 입력하신 계좌 정보로 지급 처리되며, 예금주 불일치 시 지급이 지연될 수 있습니다. (실명확인 절차 시뮬레이션)</p>
+                        </div>
+
+                        <div class="pt-3">
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                                결재 요청 (시뮬레이션)
+                            </button>
+                        </div>
+                        <div id="expense-report-message" class="text-center text-sm"></div>
+                        <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-yellow-700">
+                            <strong>결재 상태:</strong> <span id="approval-status">승인 대기 중 (시뮬레이션)</span>
+                        </div>
+                    </form>
+                </div>`;
+            }
+
+            // 기본 관리자 페이지 플레이스홀더
+            return `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-4 text-center">${title}</h1>
+                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-2xl mx-auto text-center">
+                        <p class="text-slate-700 text-lg mb-3">${description}</p>
+                        <svg class="w-24 h-24 text-blue-500 mx-auto my-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <p class="text-sm text-slate-500">이 페이지는 관리자(임원) 권한이 있는 사용자에게만 접근이 허용됩니다.<br>로그인 후 이용해주시기 바랍니다.</p>
+                        <a href="#/login" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors duration-300">관리자 로그인</a>
+                    </div>
+                </div>`;
+        }
+
+        // --- 페이지 콘텐츠 정의 ---
+        // ! 각 경로는 영문 슬러그로 정의되어야 하며, `parseMenuCSV`에서 생성된 경로와 일치해야 합니다.
+        // 페이지 내용은 한국어로 작성됩니다.
+        const pages = {
+            '/': function() { 
+                return `
+                    <div class="hero-bg text-white py-24 md:py-36 relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 opacity-80"></div>
+                        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                             <div class="mb-8">
+                                <svg class="w-24 h-24 text-white mx-auto opacity-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-6 text-shadow-md">
+                                대한민국 산업기술 R&D 발전과<br class="sm:hidden"> 노동자 권리 증진을 위해,<br>KEIT 노동조합이 함께합니다.
+                            </h2>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto text-blue-100 mb-10 text-shadow">
+                                조합원의 목소리를 경청하고, 더 나은 미래를 만들어갑니다.
+                            </p>
+                            <div class="mt-10">
+                                <a href="#/membership/join-union" class="bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold py-4 px-10 rounded-lg text-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300">
+                                    노동조합 가입하기
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    ${renderAnnouncementsSection()}
+                `;
+            },
+            '/introduction/about-union': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-6 text-center">노동조합 소개</h1>
+                    <div class="bg-white p-8 rounded-lg shadow-xl space-y-6 text-slate-700 leading-relaxed max-w-3xl mx-auto">
+                        <p class="text-lg">저희 <strong>한국산업기술기획평가원 노동조합</strong>은 조합원 여러분의 권익을 보호하고, 더 나은 노동 환경을 조성하기 위해 헌신하는 자주적인 조직입니다.</p>
+                        <p>우리의 핵심 가치는 <strong>단결, 상생, 그리고 발전</strong>입니다. 이를 바탕으로 조합원 개개인의 목소리에 귀 기울이며, 모두가 만족할 수 있는 합리적이고 공정한 노동 조건을 마련하고자 노력합니다. 노동조합은 조합원 여러분의 든든한 동반자로서, 업무 현장에서 마주할 수 있는 다양한 문제 해결을 지원하고, 직장 내 민주주의를 실현하는 데 앞장서겠습니다.</p>
+                        <h2 class="text-2xl font-semibold text-slate-800 mt-8 mb-3 border-b pb-2">주요 활동 목표</h2>
+                        <ul class="list-disc list-inside space-y-3 pl-5">
+                            <li>조합원의 경제적 안정과 사회적 지위 향상을 위한 적극적인 교섭 활동</li>
+                            <li>투명하고 공정한 인사 제도 및 평가 시스템 구축 요구</li>
+                            <li>안전하고 쾌적한 근무 환경 조성 및 산업 재해 예방</li>
+                            <li>조합원의 직무 능력 향상 및 자기 계발을 위한 교육 프로그램 지원</li>
+                            <li>다양한 문화 복지 프로그램 운영을 통한 조합원 복리 증진</li>
+                            <li>건강한 노사문화 정착과 상호 존중을 기반으로 한 협력적 관계 구축</li>
+                        </ul>
+                        <p class="mt-6">여러분의 적극적인 참여와 지지가 우리 노동조합을 더욱 강하게 만듭니다. 함께 더 나은 미래를 만들어 갑시다!</p>
+                    </div>
+                </div>`,
+            '/introduction/chairmans-message': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">위원장 인사말</h1>
+                    <div class="bg-white p-10 rounded-lg shadow-xl text-slate-700 max-w-3xl mx-auto">
+                        <img src="https://fakeimg.pl/150x150/60a5fa/ffffff/?text=위원장&font=noto" alt="위원장 사진" class="rounded-full float-left mr-8 mb-4 w-36 h-36 md:w-44 md:h-44 object-cover border-4 border-blue-200">
+                        <p class="text-lg mb-4 leading-relaxed">존경하는 한국산업기술기획평가원 조합원 동지 여러분, 안녕하십니까. 노동조합 위원장 OOO입니다.</p>
+                        <p class="mb-4 leading-relaxed">우리 노동조합의 홈페이지를 찾아주신 모든 분들께 진심으로 감사드립니다. 이 공간이 조합원 여러분과의 소통을 강화하고, 우리 노동조합의 활동을 투명하게 공유하는 열린 창구가 되기를 희망합니다.</p>
+                        <p class="mb-4 leading-relaxed">저는 노동조합 위원장으로서 조합원 여러분의 권익을 최우선으로 생각하며, 더 나은 노동 환경과 행복한 직장 생활을 만들기 위해 모든 노력을 다할 것을 약속드립니다. 조합원 여러분의 작은 목소리 하나하나에도 귀 기울이며, 항상 여러분 곁에서 함께 하겠습니다.</p>
+                        <p class="mb-4 leading-relaxed">우리의 단결된 힘과 지혜를 모아, 한국산업기술기획평가원이 더욱 발전하고, 그 안에서 우리 모두가 자부심을 느낄 수 있도록 최선을 다하겠습니다. 동지 여러분의 변함없는 관심과 적극적인 참여를 부탁드립니다.</p>
+                        <p class="mt-8 font-semibold text-right">한국산업기술기획평가원 노동조합 위원장  OOO 올림</p>
+                    </div>
+                </div>`,
+            '/introduction/organization-chart': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">노동조합 조직도</h1>
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                        <p class="text-slate-600 mb-6 text-lg">한국산업기술기획평가원 노동조합의 조직 구성은 다음과 같습니다.</p>
+                        <img src="https://fakeimg.pl/900x600/bfdbfe/1e3a8a/?text=KEIT%20%EB%85%B8%EB%8F%99%EC%A1%B0%ED%95%A9%20%EC%A1%B0%EC%A7%81%EB%8F%84%20%EC%98%88%EC%8B%9C&font=noto" alt="노동조합 조직도" class="mx-auto rounded-md shadow-md">
+                        <div class="mt-8 text-left max-w-2xl mx-auto space-y-3 text-slate-700">
+                            <p><strong>총회:</strong> 최고의결기구</p>
+                            <p><strong>대의원회:</strong> 총회를 갈음하는 의결기구</p>
+                            <p><strong>위원장:</strong> 조합 대표 및 업무 총괄</p>
+                            <p><strong>부위원장:</strong> 위원장 보좌 및 직무 대행</p>
+                            <p><strong>사무국장:</strong> 조합 제반 사무 총괄</p>
+                            <p><strong>집행위원회:</strong> 주요 정책 및 사업 심의, 집행 (예: 정책기획부, 조직강화부, 홍보문화부, 여성청년부 등)</p>
+                            <p><strong>회계감사위원회:</strong> 조합 재정 및 회계 감사</p>
+                            <p><strong>선거관리위원회:</strong> 각종 선거 공정 관리</p>
+                        </div>
+                    </div>
+                </div>`,
+            '/introduction/location': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">찾아오시는 길</h1>
+                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-4xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h2 class="text-2xl font-semibold text-slate-800 mb-4">노동조합 사무실 안내</h2>
+                                <p class="text-slate-700 mb-3 flex items-start">
+                                    <svg class="w-5 h-5 mr-2 mt-1 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001zm.612-1.426a.75.75 0 01-.096-.127l-.006-.009C10.168 17.282 10 17.216 10 17.216s-.168.066-.249.141l-.006.009a.75.75 0 01-.096.127c-.141.175-.34.288-.57.329V18a2.5 2.5 0 00-5 0v.761a.75.75 0 01-.571-.329C3.28 18.26 3 17.836 3 17.163V7.75A4.75 4.75 0 017.75 3h4.5A4.75 4.75 0 0117 7.75v9.413c0 .673-.28 1.097-.429 1.273a.75.75 0 01-.571.329V18a2.5 2.5 0 00-5 0v-.761a.75.75 0 01-.57-.329zM10 6a1 1 0 011 1v1a1 1 0 11-2 0V7a1 1 0 011-1zM9 10a1 1 0 00-1 1v.01a1 1 0 001 1h2a1 1 0 001-1V11a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                                    <strong>주소:</strong> 대구광역시 동구 첨단로8길 32 한국산업기술기획평가원 노동조합
+                                </p>
+                                <p class="text-slate-700 mb-3 flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.001c.06.25.034.518-.073.75l-.232.484a.875.875 0 00.232.984l3.034 3.033a.875.875 0 00.984.232l.483-.232c.234-.107.499-.133.75-.072l3.001.715A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" /></svg>
+                                    <strong>대표전화:</strong> 053-718-0000
+                                </p>
+                                <p class="text-slate-700 mb-6 flex items-center">
+                                     <svg class="w-5 h-5 mr-2 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" /><path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" /></svg>
+                                    <strong>이메일:</strong> union@keitu.or.kr
+                                </p>
+                                <div class="text-slate-700 space-y-2">
+                                    <h3 class="text-xl font-semibold mb-1">대중교통 이용 시 (예시)</h3>
+                                    <p><strong>지하철:</strong> 대구 지하철 1호선 신기역 또는 각산역 하차 후 버스 환승 (예: 동구3번)</p>
+                                    <p><strong>버스:</strong> 첨단의료복합단지 인근 정류장 하차 (노선 확인 필요)</p>
+                                </div>
+                            </div>
+                            <div class="aspect-w-16 aspect-h-9 md:aspect-h-full rounded-md overflow-hidden shadow-md">
+                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3232.039031355774!2d128.7099003156191!3d35.89731502697049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356609fff9ffffff%3A0x9f9b78a9d5d8e9d5!2z7ZWc6rWt7IKs7Jqp6riw7IK87Jqp7JuQ7ZWZ6rWQIOygnOq0gA!5e0!3m2!1sko!2skr!4v1684988000000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <p class="text-xs text-center text-slate-500 mt-1">지도: 한국산업기술기획평가원 대구 본원 위치</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`,
+            '/news-activities/announcements': () => renderGenericList('공지사항', mockAnnouncements),
+            '/news-activities/main-activities': () => renderGenericList('주요 활동 및 행사', mockNews),
+            '/news-activities/gallery': () => renderGallery('활동 사진 갤러리', mockGallery),
+            '/news-activities/related-links': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">관련 기관 및 유관 단체</h1>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
+                        ${[
+                            { name: '한국산업기술기획평가원 (KEIT)', logo: 'https://fakeimg.pl/200x100/3b82f6/ffffff/?text=KEIT&font=noto', url: 'https://www.keit.re.kr', description: '우리 기관의 공식 웹사이트입니다.' },
+                            { name: '고용노동부', logo: 'https://fakeimg.pl/200x100/10b981/ffffff/?text=고용노동부&font=noto', url: 'https://www.moel.go.kr', description: '노동 정책 및 법률 정보를 제공합니다.' },
+                            { name: '전국공공연구노동조합', logo: 'https://fakeimg.pl/200x100/f97316/ffffff/?text=공공연구노조&font=noto', url: '#', description: '공공연구 분야 노동조합 연대체입니다.' },
+                            { name: '법제처 국가법령정보센터', logo: 'https://fakeimg.pl/200x100/6366f1/ffffff/?text=국가법령정보&font=noto', url: 'https://www.law.go.kr', description: '노동 관련 법령을 검색할 수 있습니다.' },
+                            { name: '중앙노동위원회', logo: 'https://fakeimg.pl/200x100/ec4899/ffffff/?text=중앙노동위원회&font=noto', url: 'https://www.nlrc.go.kr', description: '노동 분쟁 조정 및 심판 정보를 제공합니다.' },
+                        ].map(org => `
+                            <a href="${org.url}" target="_blank" rel="noopener noreferrer" class="group block bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 card-hover-effect">
+                                <img src="${org.logo}" alt="${org.name} 로고" class="h-20 mx-auto mb-4 object-contain transition-transform duration-300 group-hover:scale-105">
+                                <h3 class="text-center font-semibold text-lg text-slate-800 group-hover:text-blue-600 mb-1">${org.name}</h3>
+                                <p class="text-sm text-slate-500 text-center">${org.description}</p>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>`,
+            '/membership/join-union': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">노동조합 가입 신청</h1>
+                    <form id="union-join-form" class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6">
+                        <p class="text-sm text-slate-600 bg-blue-50 p-4 rounded-md border border-blue-200">한국산업기술기획평가원 노동조합 가입을 진심으로 환영합니다. 아래 정보를 정확히 기입해주시면, 조합 가입 절차를 안내해드리겠습니다.</p>
+                        <div>
+                            <label for="joinName" class="block text-sm font-medium text-slate-700 mb-1">성명 <span class="text-red-500">*</span></label>
+                            <input type="text" name="joinName" id="joinName" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="홍길동">
+                        </div>
+                        <div>
+                            <label for="joinEmployeeId" class="block text-sm font-medium text-slate-700 mb-1">사번 <span class="text-red-500">*</span></label>
+                            <input type="text" name="joinEmployeeId" id="joinEmployeeId" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="사번을 입력하세요">
+                        </div>
+                        <div>
+                            <label for="joinDepartment" class="block text-sm font-medium text-slate-700 mb-1">소속 부서 <span class="text-red-500">*</span></label>
+                            <input type="text" name="joinDepartment" id="joinDepartment" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="예: 경영기획본부 OOO팀">
+                        </div>
+                        <div>
+                            <label for="joinEmail" class="block text-sm font-medium text-slate-700 mb-1">이메일 주소 <span class="text-red-500">*</span></label>
+                            <input type="email" name="joinEmail" id="joinEmail" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="union_member@example.com">
+                        </div>
+                         <div>
+                            <label for="joinPhone" class="block text-sm font-medium text-slate-700 mb-1">연락처 (휴대전화) <span class="text-red-500">*</span></label>
+                            <input type="tel" name="joinPhone" id="joinPhone" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="010-1234-5678">
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="joinAgree" name="joinAgree" type="checkbox" required class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-slate-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="joinAgree" class="font-medium text-slate-700">개인정보 수집 및 이용에 동의합니다. <span class="text-red-500">*</span></label>
+                                <p class="text-slate-500 text-xs">수집된 개인정보는 노동조합 가입 및 조합원 관리 목적으로만 사용됩니다. (세부내용 보기 - 링크)</p>
+                            </div>
+                        </div>
+                        <div class="pt-3">
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                                가입 신청서 제출
+                            </button>
+                        </div>
+                        <p id="join-form-message" class="text-center text-sm"></p>
+                    </form>
+                </div>`,
+            '/membership/update-info': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">조합원 개인정보 변경</h1>
+                     <div class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6">
+                        <p class="text-slate-600 text-center">개인정보 변경은 로그인 후 '마이페이지'에서 가능합니다.<br>또는 노동조합 사무실로 문의해주시기 바랍니다.</p>
+                        <a href="#/login" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-md shadow-sm transition-colors">로그인 페이지로 이동</a>
+                    </div>
+                </div>`,
+            '/membership/withdraw-membership': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">조합원 탈퇴 신청</h1>
+                     <div class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6 text-slate-700">
+                        <p>조합원 탈퇴를 원하시는 경우, 노동조합 규약에 따른 절차가 필요합니다.</p>
+                        <p>탈퇴 신청서 양식은 '자료실'에서 다운로드 받으실 수 있으며, 작성 후 노동조합 사무실로 제출해주시기 바랍니다. 사무국장과의 면담이 필요할 수 있습니다.</p>
+                        <p>궁금한 점이 있으시면 언제든지 노동조합(053-718-0000)으로 문의해주십시오.</p>
+                        <a href="#/community/resources" class="block w-full text-center mt-4 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-md shadow-sm transition-colors">자료실 바로가기</a>
+                    </div>
+                </div>`,
+            '/community/executive-board': () => renderGenericList('노조임원 활동 게시판', mockNews.filter(n => n.id % 2 === 0) , false, true),
+            '/community/committee-board': () => renderGenericList('상임집행위원회/대의원회 활동', mockAnnouncements.filter(a => a.id < 3), false, true),
+            '/community/violation-report': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">단체협약 위반 신고</h1>
+                    <form id="danhyup-report-form" class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6">
+                        <p class="text-sm text-slate-600 bg-yellow-50 p-4 rounded-md border border-yellow-200">단체협약 위반사항이나 부당한 처우를 경험하셨다면, 익명 또는 실명으로 신고하실 수 있습니다. 노동조합이 조합원님의 권리를 보호하기 위해 최선을 다하겠습니다.</p>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">신고 구분</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center"><input type="radio" name="reportType" value="anonymous" class="mr-1 focus:ring-blue-500 text-blue-600"> 익명 신고</label>
+                                <label class="flex items-center"><input type="radio" name="reportType" value="realname" checked class="mr-1 focus:ring-blue-500 text-blue-600"> 실명 신고</label>
+                            </div>
+                        </div>
+                        <div id="realname-fields">
+                            <label for="reporterName" class="block text-sm font-medium text-slate-700 mb-1">신고자 성명 (실명 신고 시)</label>
+                            <input type="text" name="reporterName" id="reporterName" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5">
+                        </div>
+                        <div>
+                            <label for="reportTitle" class="block text-sm font-medium text-slate-700 mb-1">신고 제목 <span class="text-red-500">*</span></label>
+                            <input type="text" name="reportTitle" id="reportTitle" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5">
+                        </div>
+                        <div>
+                            <label for="reportContent" class="block text-sm font-medium text-slate-700 mb-1">신고 내용 (육하원칙에 따라 상세히) <span class="text-red-500">*</span></label>
+                            <textarea name="reportContent" id="reportContent" rows="6" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5"></textarea>
+                        </div>
+                        <div>
+                            <label for="reportFile" class="block text-sm font-medium text-slate-700 mb-1">첨부 파일 (증빙 자료)</label>
+                            <input type="file" name="reportFile" id="reportFile" class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-md transition-colors duration-300">신고 접수</button>
+                        <p id="danhyup-report-message" class="text-center text-sm"></p>
+                    </form>
+                </div>`,
+            '/community/counseling-anonymous': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">고충 상담실 (익명 보장)</h1>
+                     <form id="counsel-form" class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6">
+                        <p class="text-sm text-slate-600 bg-green-50 p-4 rounded-md border border-green-200">직장 내 어려움이나 고민이 있으신가요? 익명으로 안전하게 상담을 신청하실 수 있습니다. 노동조합은 조합원님의 편에서 함께 고민하고 해결책을 찾겠습니다.</p>
+                        <div>
+                            <label for="counselTitle" class="block text-sm font-medium text-slate-700 mb-1">상담 제목 <span class="text-red-500">*</span></label>
+                            <input type="text" name="counselTitle" id="counselTitle" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5">
+                        </div>
+                        <div>
+                            <label for="counselContent" class="block text-sm font-medium text-slate-700 mb-1">상담 내용 (구체적으로 작성해주시면 도움이 됩니다) <span class="text-red-500">*</span></label>
+                            <textarea name="counselContent" id="counselContent" rows="8" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5"></textarea>
+                        </div>
+                        <div>
+                            <label for="counselPassword" class="block text-sm font-medium text-slate-700 mb-1">게시글 비밀번호 (익명글 수정/삭제 시 필요) <span class="text-red-500">*</span></label>
+                            <input type="password" name="counselPassword" id="counselPassword" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5">
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-md transition-colors duration-300">상담글 등록 (익명)</button>
+                        <p id="counsel-form-message" class="text-center text-sm"></p>
+                    </form>
+                    <div class="mt-10 max-w-lg mx-auto">
+                        <h2 class="text-xl font-semibold text-slate-700 mb-3">최근 상담 답변 (예시)</h2>
+                        <ul class="space-y-3">
+                            <li class="bg-white p-4 rounded-md shadow-sm hover:shadow-md transition-shadow"><a href="#" class="text-blue-600 hover:underline">업무량 과다 문제에 대한 답변입니다.</a> <span class="text-xs text-slate-500 ml-2">2025.03.10</span></li>
+                            <li class="bg-white p-4 rounded-md shadow-sm hover:shadow-md transition-shadow"><a href="#" class="text-blue-600 hover:underline">직장 내 괴롭힘 관련 상담 답변</a> <span class="text-xs text-slate-500 ml-2">2025.03.05</span></li>
+                        </ul>
+                    </div>
+                </div>`,
+            '/community/voting-room': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">조합원 온라인 투표</h1>
+                     <div class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-auto space-y-6">
+                        <p class="text-center text-slate-600">현재 진행 중인 투표가 없습니다.</p>
+                        <div class="border-t pt-6 mt-6">
+                            <h2 class="text-xl font-semibold text-slate-700 mb-3">지난 투표 결과 (예시)</h2>
+                            <ul class="space-y-2 text-sm">
+                                <li class="p-3 bg-slate-50 rounded-md">2024년 단체협약 개정(안) 찬반투표: 가결 (찬성 85%)</li>
+                                <li class="p-3 bg-slate-50 rounded-md">2023년 임원선거 결과: 위원장 OOO 당선</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>`,
+            '/community/resources': () => renderGenericList('자료실 (각종 서식, 규약, 단체협약)', [
+                { id: 1, title: '한국산업기술기획평가원 노동조합 규약 (2024.01.01 개정판)', date: '2024.01.15', isNew: true, downloadLink: '#' },
+                { id: 2, title: '2023-2024년 단체협약 전문', date: '2023.12.01', isNew: false, downloadLink: '#' },
+                { id: 3, title: '노동조합 가입 신청서 (양식)', date: '2023.05.10', isNew: false, downloadLink: '#' },
+                { id: 4, title: '노동조합 탈퇴 신청서 (양식)', date: '2023.05.10', isNew: false, downloadLink: '#' },
+                { id: 5, title: '회의록 양식 (표준)', date: '2023.03.01', isNew: false, downloadLink: '#' },
+                { id: 6, title: '출장비/경조사비 신청서 양식', date: '2023.03.01', isNew: false, downloadLink: '#' },
+            ], true, true),
+            '/member-benefits/event-guide': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">조합원 이벤트 안내</h1>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover-effect">
+                            <h2 class="text-2xl font-semibold text-blue-600 mb-3">2025년 신년 맞이 조합원 선물 증정</h2>
+                            <p class="text-sm text-slate-500 mb-2">일시: 2025년 1월 중 / 대상: 전체 조합원</p>
+                            <p class="text-slate-700">새해를 맞이하여 조합원 여러분께 감사의 마음을 담아 작은 선물을 준비했습니다. 자세한 수령 방법은 추후 공지됩니다.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover-effect">
+                            <h2 class="text-2xl font-semibold text-blue-600 mb-3">조합원 자녀 장학금 신청 안내 (상반기)</h2>
+                            <p class="text-sm text-slate-500 mb-2">신청기간: 2025년 3월 1일 ~ 3월 31일</p>
+                            <p class="text-slate-700">조합원 자녀(초/중/고/대학생)를 대상으로 장학금 신청을 받습니다. 세부 기준 및 신청 방법은 공지사항을 참고해주십시오.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg md:col-span-2 card-hover-effect">
+                             <h2 class="text-2xl font-semibold text-blue-600 mb-3">지난 이벤트: 2024 하계 휴양시설 이용 지원</h2>
+                            <p class="text-sm text-slate-500 mb-2">기간: 2024년 7월 ~ 8월</p>
+                            <p class="text-slate-700">많은 조합원님들의 참여 덕분에 성황리에 마무리되었습니다. 내년에도 더 좋은 프로그램으로 찾아뵙겠습니다.</p>
+                        </div>
+                    </div>
+                </div>`,
+            '/member-benefits/benefits-guide': () => `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">주요 조합원 혜택</h1>
+                     <div class="bg-white p-8 rounded-xl shadow-xl max-w-3xl mx-auto space-y-6">
+                        <ul class="list-disc list-inside space-y-4 text-slate-700 text-lg">
+                            <li><strong>경조사 지원:</strong> 결혼, 출산, 장례 등 조합원 및 가족의 경조사 발생 시 규정에 따른 경조금 및 경조휴가 지원.</li>
+                            <li><strong>자녀 학자금 지원:</strong> 조합원 자녀의 학자금 부담 경감을 위한 장학금 또는 학자금 무이자 대출 지원 (예산 범위 내).</li>
+                            <li><strong>단체보험 가입:</strong> 질병, 상해 등에 대비한 단체보험 가입 지원으로 의료비 부담 완화.</li>
+                            <li><strong>건강검진 지원:</strong> 정기적인 건강검진 비용 일부 지원 또는 협력 병원 할인 혜택.</li>
+                            <li><strong>휴양시설 이용 지원:</strong> 전국 주요 콘도/리조트 등 휴양시설 이용 시 할인 또는 이용권 추첨 제공.</li>
+                            <li><strong>문화생활 지원:</strong> 영화, 연극, 스포츠 경기 등 문화생활 지원을 위한 상품권 지급 또는 할인 혜택.</li>
+                            <li><strong>법률 상담 지원:</strong> 노동 문제 등 법률 자문이 필요한 경우 전문 노무사/변호사 상담 지원.</li>
+                            <li><strong>교육 프로그램 운영:</strong> 직무 역량 강화, 교양 함양 등을 위한 다양한 온/오프라인 교육 프로그램 제공.</li>
+                        </ul>
+                        <p class="text-sm text-slate-500 mt-6 border-t pt-4">※ 위 혜택은 노동조합의 재정 상황 및 규정에 따라 변동될 수 있으며, 자세한 내용은 조합 사무실로 문의 바랍니다.</p>
+                    </div>
+                </div>`,
+            '/admin-menu/expense-report-exec': () => createAdminPagePlaceholder('임원용 경비신청 시스템', '출장비, 회의비 등 각종 경비 신청 및 정산 기능입니다. 전자결재 시스템과 연동됩니다.'),
+            '/admin-menu/expense-report-committee': () => createAdminPagePlaceholder('상집위/대의원용 경비신청', '상임집행위원 및 대의원 활동 관련 경비 신청 페이지입니다.'),
+            '/admin-menu/member-management': () => createAdminPagePlaceholder('조합원 관리 및 통계', '조합원 정보 조회, 현황 통계, 각종 보고서 출력 기능입니다.'),
+            '/admin-menu/timeoff-management': () => createAdminPagePlaceholder('타임오프 관리 시스템', '노조 활동 관련 타임오프(근로시간 면제) 신청, 승인, 현황 관리 기능입니다.'),
+            '/admin-menu/sms-dispatch': () => createAdminPagePlaceholder('SMS 대량 발송 서비스', '조합원 대상 공지 및 안내 문자 발송 기능입니다.'),
+            '/admin-menu/shared-calendar': () => createAdminPagePlaceholder('노동조합 공식 일정 공유', '주요 행사, 회의 등 노동조합 공식 일정을 공유하고 관리하는 캘린더입니다.'),
+            '/login/find-id': () => `
+                <div class="container mx-auto px-4 py-16 max-w-md">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">아이디 찾기</h1>
+                    <form id="find-id-form" class="bg-white p-8 rounded-xl shadow-xl space-y-6">
+                        <div>
+                            <label for="findIdName" class="block text-sm font-medium text-slate-700 mb-1">성명</label>
+                            <input type="text" name="findIdName" id="findIdName" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="가입 시 등록한 성명">
+                        </div>
+                        <div>
+                            <label for="findIdEmail" class="block text-sm font-medium text-slate-700 mb-1">이메일 주소</label>
+                            <input type="email" name="findIdEmail" id="findIdEmail" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="가입 시 등록한 이메일">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">아이디 찾기</button>
+                        <p id="find-id-message" class="text-center text-sm"></p>
+                        <div class="text-sm text-center text-slate-600 space-x-2">
+                            <a href="#/login/find-password" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">비밀번호 찾기</a>
+                            <span>|</span>
+                            <a href="#/signup/verification" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">회원가입</a>
+                            <span>|</span>
+                            <a href="#/login" class="font-medium text-slate-600 hover:text-blue-500 hover:underline">로그인</a>
+                        </div>
+                    </form>
+                </div>`,
+            '/login/find-password': () => `
+                 <div class="container mx-auto px-4 py-16 max-w-md">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">비밀번호 찾기/재설정</h1>
+                    <form id="find-pw-form" class="bg-white p-8 rounded-xl shadow-xl space-y-6">
+                        <div>
+                            <label for="findPwId" class="block text-sm font-medium text-slate-700 mb-1">아이디</label>
+                            <input type="text" name="findPwId" id="findPwId" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="아이디 입력">
+                        </div>
+                        <div>
+                            <label for="findPwEmail" class="block text-sm font-medium text-slate-700 mb-1">이메일 주소</label>
+                            <input type="email" name="findPwEmail" id="findPwEmail" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="가입 시 등록한 이메일">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">임시 비밀번호 발송</button>
+                        <p id="find-pw-message" class="text-center text-sm"></p>
+                         <div class="text-sm text-center text-slate-600 space-x-2">
+                            <a href="#/login/find-id" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">아이디 찾기</a>
+                            <span>|</span>
+                            <a href="#/signup/verification" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">회원가입</a>
+                             <span>|</span>
+                            <a href="#/login" class="font-medium text-slate-600 hover:text-blue-500 hover:underline">로그인</a>
+                        </div>
+                    </form>
+                </div>`,
+             '/login': () => `
+                <div class="container mx-auto px-4 py-16 max-w-md">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">로그인</h1>
+                    <form id="login-form" class="bg-white p-8 rounded-xl shadow-xl space-y-6">
+                        <div>
+                            <label for="loginId" class="block text-sm font-medium text-slate-700 mb-1">아이디</label>
+                            <input type="text" name="loginId" id="loginId" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="아이디를 입력하세요">
+                        </div>
+                        <div>
+                            <label for="loginPassword" class="block text-sm font-medium text-slate-700 mb-1">비밀번호</label>
+                            <input type="password" name="loginPassword" id="loginPassword" required class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5" placeholder="비밀번호를 입력하세요">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="rememberMe" name="rememberMe" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded">
+                                <label for="rememberMe" class="ml-2 block text-sm text-slate-800">로그인 상태 유지</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">로그인</button>
+                        <p id="login-message" class="text-center text-sm"></p>
+                        <div class="text-sm text-center text-slate-600 space-x-2">
+                            <a href="#/login/find-id" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">아이디/비밀번호 찾기</a>
+                            <span>|</span>
+                            <a href="#/signup/verification" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">회원가입</a>
+                        </div>
+                    </form>
+                </div>`,
+            '/signup/verification': () => `
+                <div class="container mx-auto px-4 py-16 max-w-lg">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">회원가입 (1/3)</h1>
+                    <div class="bg-white p-8 rounded-xl shadow-xl space-y-6">
+                        <h2 class="text-xl font-semibold text-slate-700 text-center">본인 인증 단계</h2>
+                        <p class="text-center text-slate-600">안전한 서비스 이용을 위해 본인 인증을 진행해주세요.</p>
+                        <button type="button" id="auth-sms" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3 px-4 rounded-md transition-colors duration-300">휴대폰 SMS 인증</button>
+                        <button type="button" id="auth-ipin" class="w-full bg-slate-500 hover:bg-slate-600 text-white font-medium py-3 px-4 rounded-md transition-colors duration-300">아이핀(I-PIN) 인증</button>
+                        <p class="text-xs text-slate-500 text-center">본인 인증은 실제 구현 시 외부 인증 모듈 연동이 필요합니다.<br>이 페이지는 절차 안내용 예시입니다.</p>
+                        <div id="auth-message" class="text-center text-sm"></div>
+                        <div class="text-sm text-center mt-4">
+                            <a href="#/login" class="text-blue-600 hover:text-blue-500 hover:underline">이미 계정이 있으신가요? 로그인</a>
+                        </div>
+                    </div>
+                </div>`,
+            '/signup/account-info': () => `
+                <div class="container mx-auto px-4 py-16 max-w-lg">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">회원가입 (2/3)</h1>
+                    <form id="signup-step2-form" class="bg-white p-8 rounded-xl shadow-xl space-y-6">
+                        <h2 class="text-xl font-semibold text-slate-700 text-center">계정 정보 입력</h2>
+                        <div>
+                            <label for="signupId" class="block text-sm font-medium text-slate-700">아이디 <span class="text-red-500">*</span></label>
+                            <input type="text" id="signupId" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="영문, 숫자 포함 6~12자">
+                        </div>
+                        <div>
+                            <label for="signupPassword" class="block text-sm font-medium text-slate-700">비밀번호 <span class="text-red-500">*</span></label>
+                            <input type="password" id="signupPassword" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="영문, 숫자, 특수문자 포함 8자 이상">
+                        </div>
+                        <div>
+                            <label for="signupPasswordConfirm" class="block text-sm font-medium text-slate-700">비밀번호 확인 <span class="text-red-500">*</span></label>
+                            <input type="password" id="signupPasswordConfirm" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="signupBirthdate" class="block text-sm font-medium text-slate-700">생년월일 <span class="text-red-500">*</span></label>
+                            <input type="text" id="signupBirthdate" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="YYYYMMDD 형식 (예: 19900101)">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition-colors duration-300">다음 단계</button>
+                        <div id="signup-step2-message" class="text-center text-sm"></div>
+                    </form>
+                </div>`,
+             '/signup/contact-info': () => `
+                <div class="container mx-auto px-4 py-16 max-w-lg">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">회원가입 (3/3)</h1>
+                    <form id="signup-step3-form" class="bg-white p-8 rounded-xl shadow-xl space-y-6">
+                        <h2 class="text-xl font-semibold text-slate-700 text-center">추가 정보 입력</h2>
+                        <div>
+                            <label for="signupAddress" class="block text-sm font-medium text-slate-700">주소</label>
+                            <input type="text" id="signupAddress" class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="signupMobile" class="block text-sm font-medium text-slate-700">휴대폰 번호 <span class="text-red-500">*</span></label>
+                            <input type="tel" id="signupMobile" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="010-0000-0000">
+                        </div>
+                        <div>
+                            <label for="signupEmail" class="block text-sm font-medium text-slate-700">이메일 주소 <span class="text-red-500">*</span></label>
+                            <input type="email" id="signupEmail" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="본인인증 시 사용한 이메일과 동일">
+                        </div>
+                         <div>
+                            <label for="signupEmployeeNo" class="block text-sm font-medium text-slate-700">사번 <span class="text-red-500">*</span></label>
+                            <input type="text" id="signupEmployeeNo" required class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                         <div>
+                            <label for="signupJoinDate" class="block text-sm font-medium text-slate-700">입사 연월일</label>
+                            <input type="text" id="signupJoinDate" class="mt-1 block w-full rounded-md border-slate-300 p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="YYYYMMDD">
+                        </div>
+                        <div class="flex items-start">
+                             <input id="agreeTerms" name="agreeTerms" type="checkbox" required class="h-4 w-4 text-blue-600 rounded mt-1 focus:ring-blue-500">
+                             <label for="agreeTerms" class="ml-2 text-sm text-slate-700">이용약관 및 개인정보처리방침에 모두 동의합니다. <span class="text-red-500">*</span></label>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-md transition-colors duration-300">회원가입 완료</button>
+                        <div id="signup-step3-message" class="text-center text-sm"></div>
+                    </form>
+                </div>`,
+            'default': () => `
+                <div class="container mx-auto px-4 py-12 text-center">
+                    <h1 class="text-4xl font-bold text-slate-800 mb-4">404 - 페이지를 찾을 수 없습니다.</h1>
+                    <p class="text-slate-600 text-lg mb-8">요청하신 페이지가 존재하지 않거나, 현재 사용할 수 없습니다.</p>
+                    <a href="#/" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg text-lg transition-colors duration-300">
+                        홈으로 돌아가기
+                    </a>
+                </div>`
+        };
+        
+        // --- 목업 데이터 (게시판 및 갤러리용) ---
+        const mockAnnouncements = [
+          { id: 1, title: '2025년도 정기 대의원대회 개최 알림', date: '2025.03.15', isNew: true, views: 123 },
+          { id: 2, title: '조합원 복지포인트 신청 마감 임박 안내 (3월 31일까지)', date: '2025.03.12', isNew: true, views: 256 },
+          { id: 3, title: '단체협약 개정 관련 조합원 의견 수렴 공고 (기간: ~3/20)', date: '2025.03.10', isNew: false, views: 301 },
+          { id: 4, title: '신규 조합원 가입 안내 및 환영 행사 개최 (4월 초 예정)', date: '2025.03.05', isNew: false, views: 189 },
+          { id: 5, title: '노동조합 하계 휴양소 이용 신청 안내 (추후 상세 공지)', date: '2025.02.28', isNew: false, views: 412 },
+          { id: 6, title: '조합원 법률 상담 지원 안내 (매월 첫째주 수요일)', date: '2025.02.20', isNew: false, views: 220 },
+        ];
+
+        const mockNews = [
+            { id: 1, title: '노사협의회, 2025년 1분기 주요 안건 합의 도출', date: '2025.03.14', isNew: true, views: 98 },
+            { id: 2, title: '조합, 지역 사회 취약계층 대상 연탄 나눔 봉사활동 전개', date: '2025.01.28', isNew: false, views: 150 },
+            { id: 3, title: '위원장, 전국 공공기관 노동조합 연대회의 참석하여 현안 논의', date: '2025.02.15', isNew: false, views: 120 },
+            { id: 4, title: '2024년 조합원 역량 강화 교육 프로그램 성공적 개최 결과 보고', date: '2024.12.10', isNew: false, views: 210 },
+            { id: 5, title: '노동조합 사무실 이전 및 개소식 안내', date: '2024.11.05', isNew: false, views: 180 },
+        ];
+
+        const mockGallery = [
+          { id: 1, title: '2024년도 송년의 밤 행사 스케치', date: '2024.12.20', imageUrl: 'https://fakeimg.pl/400x300/a5b4fc/312e81/?text=2024%20송년회&font=noto', views: 350 },
+          { id: 2, title: '노동조합 창립 11주년 기념식 현장', date: '2024.10.22', imageUrl: 'https://fakeimg.pl/400x300/86efac/14532d/?text=창립11주년&font=noto', views: 420 },
+          { id: 3, title: '사랑의 연탄 나눔 봉사활동 (2025년 1월)', date: '2025.01.28', imageUrl: 'https://fakeimg.pl/400x300/fca5a5/7f1d1d/?text=연탄나눔%202025&font=noto', views: 280 },
+          { id: 4, title: '2024년 춘계 조합원 등반대회', date: '2024.04.15', imageUrl: 'https://fakeimg.pl/400x300/fdba74/7c2d12/?text=2024%20춘계등반&font=noto', views: 510 },
+          { id: 5, title: '대의원 워크숍 및 간담회 (2024년 9월)', date: '2024.09.05', imageUrl: 'https://fakeimg.pl/400x300/93c5fd/1e40af/?text=대의원워크숍&font=noto', views: 190 },
+          { id: 6, title: '단체협약 체결식 (2023년)', date: '2023.11.30', imageUrl: 'https://fakeimg.pl/400x300/fde047/713f12/?text=단체협약%202023&font=noto', views: 600 },
+        ];
+
+        /**
+         * 홈페이지 메인에 표시될 공지사항/조합소식 탭 섹션을 렌더링합니다.
+         * @returns {string} HTML 문자열
+         */
+        function renderAnnouncementsSection() {
+            return `
+            <section class="py-16 bg-slate-50">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <div class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-xl shadow-xl">
+                            <div class="flex border-b border-slate-200 mb-6">
+                                <button class="tab-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 font-bold text-base md:text-lg transition-all duration-200 border-b-4 border-blue-600 text-blue-700" data-tab="announcements">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25H5.625a2.25 2.25 0 01-2.25-2.25V7.5c0-.621.504-1.125 1.125-1.125H7.5M12 4.5v.75m0 3v.75m0 3v.75m0 3V18m-3-9h.008v.008H9v-.008zm3 0h.008v.008H12v-.008zm3 0h.008v.008H15v-.008zm-3-3h.008v.008H12v-.008zm3 0h.008v.008H15v-.008zm3 0h.008v.008H18v-.008zm-3-3h.008v.008H12v-.008zm3 0h.008v.008H15v-.008zm3 0h.008v.008H18v-.008z" /></svg>
+                                    <span>공지사항</span>
+                                </button>
+                                <button class="tab-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 font-bold text-base md:text-lg transition-all duration-200 border-b-4 border-transparent text-slate-500 hover:bg-slate-100 hover:text-slate-800" data-tab="news">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                                    <span>조합소식</span>
+                                </button>
+                                <a href="#/news-activities/announcements" class="ml-auto text-sm text-blue-600 hover:text-blue-800 self-center transition-colors duration-300">더보기 →</a>
+                            </div>
+                            <div id="tab-content-container" class="min-h-[300px]">
+                                </div>
+                        </div>
+                        <aside class="space-y-8">
+                            <div class="bg-white p-6 rounded-xl shadow-xl">
+                                <h3 class="font-bold text-xl text-slate-800 border-b pb-3 mb-4">자주 찾는 메뉴</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <a href="#/membership/join-union" class="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all duration-300 card-hover-effect">
+                                        <svg class="w-8 h-8 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.5 21h-1a12.318 12.318 0 01-3.001-.766z" /></svg>
+                                        <span class="font-semibold text-sm text-blue-800 text-center">조합 가입 안내</span>
+                                    </a>
+                                    <a href="#/community/resources" class="flex flex-col items-center justify-center p-4 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition-all duration-300 card-hover-effect">
+                                        <svg class="w-8 h-8 text-emerald-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                                        <span class="font-semibold text-sm text-emerald-800 text-center">자료실</span>
+                                    </a>
+                                     <a href="#/news-activities/gallery" class="flex flex-col items-center justify-center p-4 bg-rose-50 rounded-lg hover:bg-rose-100 transition-all duration-300 card-hover-effect">
+                                        <svg class="w-8 h-8 text-rose-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" /><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" /></svg>
+                                        <span class="font-semibold text-sm text-rose-800 text-center">활동사진</span>
+                                    </a>
+                                    <a href="#/community/counseling-anonymous" class="flex flex-col items-center justify-center p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-all duration-300 card-hover-effect">
+                                         <svg class="w-8 h-8 text-amber-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+                                        <span class="font-semibold text-sm text-amber-800 text-center">고충상담</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+            `;
+        }
+        
+        /**
+         * 공지사항 또는 조합소식 탭의 내용을 렌더링합니다.
+         * @param {string} type - 탭의 종류 ('announcements' 또는 'news')
+         * @returns {string} HTML 문자열
+         */
+        function renderTabContent(type) {
+            const items = type === 'announcements' ? mockAnnouncements.slice(0, 5) : mockNews.slice(0, 5); // 상위 5개 항목만 표시
+            const listHtml = items.map(item => `
+                <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition-colors duration-200">
+                    <a href="#" class="text-slate-700 hover:text-blue-600 cursor-pointer truncate pr-4 flex-grow group">
+                        <span class="group-hover:underline">${item.title}</span>
+                    </a>
+                    <div class="flex items-center space-x-3 flex-shrink-0">
+                        ${item.isNew ? '<span class="bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">NEW</span>' : ''}
+                        <span class="text-sm text-slate-400 hidden sm:block">${item.date}</span>
+                    </div>
+                </li>
+            `).join('');
+            return `<ul class="space-y-3">${listHtml}</ul>`;
+        }
+
+        /**
+         * 일반적인 게시판 목록을 렌더링합니다. (공지사항, 자료실 등)
+         * @param {string} title - 게시판 제목 (한글)
+         * @param {Array<object>} items - 게시물 데이터 배열
+         * @param {boolean} isDownloadList - 다운로드 링크 표시 여부
+         * @param {boolean} showViews - 조회수 표시 여부
+         * @returns {string} HTML 문자열
+         */
+        function renderGenericList(title, items, isDownloadList = false, showViews = true) {
+            return `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">${title}</h1>
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-slate-200">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden sm:table-cell">번호</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">제목</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden md:table-cell">작성일</th>
+                                        ${showViews ? '<th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden sm:table-cell">조회</th>' : ''}
+                                        ${isDownloadList ? '<th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-slate-600 uppercase tracking-wider">첨부</th>' : ''}
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-slate-200">
+                                    ${items.map((item, index) => `
+                                        <tr class="hover:bg-slate-50 transition-colors duration-150">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 hidden sm:table-cell">${items.length - index}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800">
+                                                <a href="#" class="hover:text-blue-600 group flex items-center">
+                                                    <span class="truncate group-hover:underline">${item.title}</span>
+                                                    ${item.isNew ? '<span class="ml-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full flex-shrink-0">NEW</span>' : ''}
+                                                </a>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 hidden md:table-cell">${item.date}</td>
+                                            ${showViews ? `<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 hidden sm:table-cell">${item.views || Math.floor(Math.random() * 500) + 50}</td>` : ''}
+                                            ${isDownloadList ? `
+                                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                    <a href="${item.downloadLink || '#'}" download class="text-blue-600 hover:text-blue-800 transition-colors duration-300" title="다운로드">
+                                                        <svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                                        </svg>
+                                                    </a>
+                                                </td>
+                                            ` : ''}
+                                        </tr>
+                                    `).join('')}
+                                    ${items.length === 0 ? '<tr><td colspan="5" class="text-center py-10 text-slate-500">게시물이 없습니다.</td></tr>' : ''}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-8 flex justify-center">
+                            <nav class="inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors duration-150">이전</a>
+                                <a href="#" aria-current="page" class="relative z-10 inline-flex items-center px-4 py-2 border border-blue-500 bg-blue-50 text-sm font-medium text-blue-600">1</a>
+                                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors duration-150">2</a>
+                                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors duration-150">다음</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * 갤러리 형태의 게시판을 렌더링합니다.
+         * @param {string} title - 갤러리 제목 (한글)
+         * @param {Array<object>} items - 갤러리 아이템 데이터 배열
+         * @returns {string} HTML 문자열
+         */
+        function renderGallery(title, items) {
+            return `
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">${title}</h1>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        ${items.map(item => `
+                            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 card-hover-effect">
+                                <a href="#" class="block">
+                                    <div class="aspect-w-4 aspect-h-3">
+                                        <img src="${item.imageUrl}" alt="${item.title}" onerror="this.onerror=null;this.src='https://fakeimg.pl/400x300/e0e0e0/757575/?text=이미지+없음&font=noto';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="font-semibold text-slate-800 group-hover:text-blue-600 truncate mb-1">${item.title}</h4>
+                                        <p class="text-xs text-slate-500">${item.date} / 조회 ${item.views || Math.floor(Math.random() * 200) + 30}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        `).join('')}
+                         ${items.length === 0 ? '<p class="col-span-full text-center py-10 text-slate-500">게시물이 없습니다.</p>' : ''}
+                    </div>
+                    <div class="mt-12 flex justify-center">
+                        <nav class="inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                           <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors duration-150">이전</a>
+                           <a href="#" aria-current="page" class="relative z-10 inline-flex items-center px-4 py-2 border border-blue-500 bg-blue-50 text-sm font-medium text-blue-600">1</a>
+                           <a href="#" class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors duration-150">2</a>
+                           <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors duration-150">다음</a>
+                        </nav>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * 폼 제출 이벤트를 처리하는 함수입니다. (실제 서버 제출은 하지 않음)
+         * @param {string} formId - 처리할 폼의 ID
+         * @param {string} messageElementId - 결과를 표시할 요소의 ID
+         * @param {string} successMessage - 성공 시 표시할 메시지
+         * @param {string|null} pageToRedirect - 성공 후 리다이렉트할 페이지 경로 (해시)
+         */
+        function handleFormSubmission(formId, messageElementId, successMessage, pageToRedirect = null) {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault(); // 실제 폼 제출 방지
+                    const messageEl = document.getElementById(messageElementId);
+                    let allValid = true;
+                    // 필수 입력 필드 검증
+                    form.querySelectorAll('[required]').forEach(input => {
+                        if (input.type === 'checkbox') {
+                            if (!input.checked) {
+                                allValid = false;
+                                const label = form.querySelector(`label[for="${input.id}"]`);
+                                if (label) label.classList.add('text-red-500');
+                            } else {
+                                const label = form.querySelector(`label[for="${input.id}"]`);
+                                if (label) label.classList.remove('text-red-500');
+                            }
+                        } else if (!input.value.trim()) { 
+                            allValid = false;
+                            input.classList.add('form-input-error');
+                            input.classList.remove('border-slate-300');
+                        } else {
+                            input.classList.remove('form-input-error');
+                            input.classList.add('border-slate-300');
+                        }
+                    });
+
+                    if (allValid) {
+                        if (messageEl) {
+                            messageEl.textContent = successMessage;
+                            messageEl.className = 'form-message form-message-success';
+                        }
+                        if (pageToRedirect) {
+                            setTimeout(() => window.location.hash = pageToRedirect, 1500);
+                        }
+                        // console.log(formId + ' submitted with data:', Object.fromEntries(new FormData(form))); // 실제 데이터 확인용 (개발 시)
+                    } else {
+                        if (messageEl) {
+                            messageEl.textContent = '필수 항목을 모두 정확히 입력해주세요.';
+                            messageEl.className = 'form-message form-message-error';
+                        }
+                    }
+                });
+            }
+        }
+        
+        /**
+         * 현재 경로에 따라 필요한 폼 이벤트 핸들러를 초기화합니다.
+         * @param {string} path - 현재 페이지 경로
+         */
+        function initializePageForms(path) {
+            // 각 페이지 경로에 맞는 폼 제출 핸들러 연결
+            if (path === '/membership/join-union') {
+                handleFormSubmission('union-join-form', 'join-form-message', '가입 신청이 성공적으로 제출되었습니다. 확인 후 연락드리겠습니다.');
+            } else if (path === '/login') {
+                 handleFormSubmission('login-form', 'login-message', '로그인 성공! (시뮬레이션)', '#/');
+            } else if (path === '/login/find-id') {
+                handleFormSubmission('find-id-form', 'find-id-message', '아이디 찾기 정보가 이메일로 발송되었습니다. (시뮬레이션)');
+            } else if (path === '/login/find-password') {
+                handleFormSubmission('find-pw-form', 'find-pw-message', '임시 비밀번호가 이메일로 발송되었습니다. (시뮬레이션)');
+            } else if (path.startsWith('/signup/')) { 
+                 if (path === '/signup/verification') {
+                    const authSmsButton = document.getElementById('auth-sms');
+                    const authIPinButton = document.getElementById('auth-ipin');
+                    const authMessageEl = document.getElementById('auth-message');
+                    
+                    if(authSmsButton) authSmsButton.addEventListener('click', () => {
+                         if(authMessageEl) {
+                            authMessageEl.textContent = 'SMS 인증을 진행합니다... (실제 연동 필요)';
+                            authMessageEl.className = 'text-center text-sm text-blue-600 p-2 bg-blue-50 rounded-md';
+                         }
+                         setTimeout(() => window.location.hash = '#/signup/account-info', 1000); 
+                    });
+                    if(authIPinButton) authIPinButton.addEventListener('click', () => {
+                         if(authMessageEl) {
+                            authMessageEl.textContent = '아이핀 인증을 진행합니다... (실제 연동 필요)';
+                            authMessageEl.className = 'text-center text-sm text-blue-600 p-2 bg-blue-50 rounded-md';
+                         }
+                    });
+                 } else if (path === '/signup/account-info') {
+                    handleFormSubmission('signup-step2-form', 'signup-step2-message', '계정 정보가 확인되었습니다. 다음 단계로 이동합니다.', '#/signup/contact-info');
+                 } else if (path === '/signup/contact-info') {
+                    handleFormSubmission('signup-step3-form', 'signup-step3-message', '회원가입이 완료되었습니다! 잠시 후 로그인 페이지로 이동합니다.', '#/login');
+                 }
+            }
+            if (path === '/community/violation-report') {
+                const realnameFields = document.getElementById('realname-fields');
+                const reportTypeRadios = document.querySelectorAll('input[name="reportType"]');
+                function toggleRealnameFields() {
+                    const selectedType = document.querySelector('input[name="reportType"]:checked');
+                    if (realnameFields && selectedType) {
+                         realnameFields.style.display = selectedType.value === 'realname' ? 'block' : 'none';
+                    }
+                }
+                if (reportTypeRadios.length > 0 && realnameFields) {
+                    reportTypeRadios.forEach(radio => radio.addEventListener('change', toggleRealnameFields));
+                    toggleRealnameFields(); 
+                }
+                handleFormSubmission('danhyup-report-form', 'danhyup-report-message', '신고가 성공적으로 접수되었습니다.');
+            }
+            if (path === '/community/counseling-anonymous') {
+                 handleFormSubmission('counsel-form', 'counsel-form-message', '상담글이 익명으로 성공적으로 등록되었습니다.');
+            }
+            // 관리자 메뉴 폼 핸들러
+            if (path === '/admin-menu/sms-dispatch') {
+                 handleFormSubmission('sms-dispatch-form', 'sms-dispatch-message', 'SMS가 발송되었습니다. (시뮬레이션)');
+            }
+            if (path === '/admin-menu/expense-report-exec') {
+                handleFormSubmission('expense-report-form', 'expense-report-message', '경비 신청이 제출되었습니다. 관리자 승인 대기 중입니다. (시뮬레이션)');
+            }
+        }
+
+        /**
+         * URL 해시 변경에 따라 적절한 페이지를 렌더링합니다.
+         * SPA(Single Page Application)의 핵심 라우팅 로직입니다.
+         */
+        function renderPage() {
+            const path = window.location.hash.slice(1) || '/'; 
+            // console.log("라우팅 경로:", path); // 디버깅용: 현재 경로 확인
+
+            const pageRenderer = pages[path] || pages['default'];
+            // console.log("선택된 페이지 렌더러:", pageRenderer !== pages['default'] ? path : "기본 페이지"); // 디버깅용
+
+            // *** 404 디버깅을 위한 추가 로그 ***
+            if(pageRenderer === pages['default'] && path !== '/') {
+                console.warn(`경고: '${path}' 경로에 대한 특정 페이지 렌더러를 찾을 수 없습니다. pages 객체에 해당 키가 정확히 정의되어 있는지, slugify 결과와 일치하는지 확인하세요.`);
+                console.log("현재 pages 객체 키 목록:", Object.keys(pages));
+            }
+
+            mainContent.innerHTML = pageRenderer(); // 메인 콘텐츠 영역에 페이지 내용 삽입
+            window.scrollTo(0,0); // 페이지 변경 시 최상단으로 스크롤
+            initializePageForms(path); // 현재 페이지에 필요한 폼 초기화
+
+            // 현재 활성화된 네비게이션 메뉴 아이템 스타일 업데이트
+            document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(el => {
+                el.classList.remove('nav-item-active', 'mobile-nav-item-active', 'font-semibold');
+                const elPath = el.dataset.path; 
+                const cleanElPath = elPath.startsWith('#') ? elPath.slice(1) : elPath; 
+
+                if (cleanElPath === path || (path === '/' && cleanElPath === '/')) {
+                    if(el.classList.contains('mobile-nav-item')) {
+                        el.classList.add('mobile-nav-item-active', 'font-semibold');
+                    } else {
+                        el.classList.add('nav-item-active');
+                    }
+                } else { 
+                    const pathSegments = path.split('/');
+                    if (pathSegments.length > 1 && cleanElPath === `/${pathSegments[1]}`) {
+                         if(el.classList.contains('mobile-nav-item-main') || (el.parentElement.classList.contains('group') && el.tagName === 'BUTTON')) {
+                            el.classList.add('nav-item-active'); 
+                         }
+                    }
+                }
+            });
+            
+            // 홈페이지인 경우, 공지사항/조합소식 탭 기능 초기화
+            if (path === '/') {
+                const tabContainer = document.getElementById('tab-content-container');
+                if (tabContainer) {
+                    tabContainer.innerHTML = renderTabContent('announcements'); // 기본으로 공지사항 탭 표시
+                    document.querySelectorAll('.tab-button').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            const tabType = e.currentTarget.dataset.tab;
+                            tabContainer.innerHTML = renderTabContent(tabType);
+                            // 활성 탭 스타일 변경
+                            document.querySelectorAll('.tab-button').forEach(btn => {
+                                btn.classList.remove('border-blue-600', 'text-blue-700');
+                                btn.classList.add('border-transparent', 'text-slate-500');
+                            });
+                            e.currentTarget.classList.add('border-blue-600', 'text-blue-700');
+                            e.currentTarget.classList.remove('border-transparent', 'text-slate-500');
+                        });
+                    });
+                }
+            }
+        }
+
+        /**
+         * 모바일 메뉴 표시/숨김 토글 함수
+         */
+        function toggleMobileMenu() {
+            const isOpen = !mobileNavPane.classList.contains('hidden');
+            if (isOpen) {
+                mobileNav.classList.add('translate-x-full');
+                mobileNavPane.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileNavPane.classList.add('hidden');
+                    document.body.style.overflow = ''; // 스크롤 잠금 해제
+                }, 300); // 애니메이션 시간과 일치
+            } else {
+                mobileNavPane.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // 스크롤 잠금
+                setTimeout(() => { 
+                    mobileNav.classList.remove('translate-x-full');
+                    mobileNavPane.classList.remove('opacity-0');
+                }, 10); // display:block 적용 후 애니메이션 시작을 위한 짧은 지연
+            }
+            menuOpenIcon.classList.toggle('hidden');
+            menuCloseIcon.classList.toggle('hidden');
+        }
+
+        // --- 이벤트 리스너 등록 ---
+        // 모바일 메뉴 토글 버튼
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        mobileCloseButton.addEventListener('click', toggleMobileMenu);
+        // 모바일 메뉴 오버레이 클릭 시 닫기
+        mobileNavPane.addEventListener('click', (e) => { 
+            if (e.target === mobileNavPane) {
+                toggleMobileMenu();
+            }
+        });
+        // 모바일 메뉴 항목 클릭 시 메뉴 닫기
+        mobileNav.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.closest('.mobile-nav-item')) {
+                toggleMobileMenu();
+            }
+        });
+
+        // URL 해시 변경 감지하여 페이지 렌더링
+        window.addEventListener('hashchange', renderPage);
+        // DOM 콘텐츠 로드 완료 후 초기 작업 수행 (메뉴 생성 및 첫 페이지 렌더링)
+        window.addEventListener('DOMContentLoaded', () => {
+            createMenus(); // 메뉴 생성
+            renderPage();  // 현재 URL 해시에 맞는 페이지 렌더링
+        });
+
+    </script>
+</body>
+</html>
